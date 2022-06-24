@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from .log_filters import ManagementFilter
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = (
     'blog',
     'contact',
     'api',
+    'user',
     
     
 )
@@ -92,6 +94,38 @@ DATABASES = {
     }
 }
 
+verbose = (
+    "[%(asctime)s] %(levelname)s "
+    "[%(name)s:%(lineno)s] %(message)s")
+
+LOGGING = {
+            'version': 1,
+            'disable_existing_loggers': False,
+            'filters':{
+                'remove_migration_sql':{
+                    '()':ManagementFilter,
+                },
+            },
+            'handlers': {
+                'console': {
+                    'filters':['remove_migration_sql'],
+                    'class': 'logging.StreamHandler',
+                },
+            },
+            'formatters': {
+                'verbose':{
+                    'format':verbose,
+                    'datefmt':"%Y-%b-%d %H:%M:%S"
+                },
+            },
+            'loggers': {
+                'django':{
+                    'handlers':['console'],
+                    'level':'DEBUG',
+                    'formatter':'verbose'
+                },
+            },
+ }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
