@@ -56,7 +56,7 @@ class TagCreate(View,ObjectCreateMixin):
         #return render(request,self.template_name,{'form':self.form_class()})
 
     #def post(self,request):
-        #=self.form_class(request.POST)
+        #bound_form=self.form_class(request.POST)
         #if bound_form.is_valid():
             #new_tag=bound_form.save()
             #return redirect(new_tag)
