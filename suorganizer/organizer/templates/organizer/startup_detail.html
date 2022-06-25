@@ -50,7 +50,7 @@
             </section>
         {%endif%}
         {%if startup.blog_posts.all%}
-            <section>
+            <section class="meta offset-by-two one-third column">
                 <h3>Blog Post{{startup.blog_posts.all|pluralize}}</h3>
                 <ul>
                     {%for post in startup.blog_posts.all%}
@@ -62,6 +62,8 @@
                     {%endfor%}
                 </ul>
             </section>
+        {% else %}
+            <section class="meta offset-by-two two-thirds column"></section>
         {%endif%}
         
 </article>

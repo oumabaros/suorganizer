@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'site/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'site/normalize.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'site/skeleton.css' %}">
         <meta charset="utf-8" />
         <title>
             {% block title %}
             Startup Organizer
             {% endblock title %}
         </title>
+        {% block head %}{% endblock head %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <!--[if IE]>
@@ -15,9 +20,12 @@
         <![endif]-->
     </head>
     <body>
-        <div>
-            <header>
-                <h1>Startup Organizer</h1>
+        <div class="container">
+            <header class="row">
+                <img src="{% static "site/logo.png" %}" alt="Site Logo">
+                <div class="offset-by-one ten columns">
+                    <h1>Startup Organizer</h1>
+                </div>
             </header>
             <main>
                 <nav>
@@ -36,10 +44,22 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="status row">
+                    <div class="offset-by-eight four columns">
+                        <ul class="inline">
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'dj-auth:logout' %}?next={{ request.path }}">Log Out</a></li>
+                            
+                            {% else %}
+                            <li><a href="{% url 'dj-auth:login' %}?next={{ request.path }}">Log In</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
                 {% if messages %}
-                <div>
-                    <div>
-                        <ul>
+                <div class="row">
+                    <div class="twelve columns">
+                        <ul class="messages">
                             {% for message in messages %}
                                 {% if message.tags %}
                                     <li class="{{ message.tags }}"></li>
