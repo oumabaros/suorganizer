@@ -2,7 +2,7 @@
 {% block title %}
     {{block.super}} - Tag List
 {% endblock title %}
-{% block content %}
+{% block org_content %}
     <h2>Tag List</h2>
     <div>
         <a href="{% url 'organizer_tag_create' %}">Create New Tag</a>
@@ -23,4 +23,4 @@
             <li><em>There are currently no Tags available.</em></li>
         {%endfor%}
     </ul>
-{% endblock content %}
+{% endblock org_content %}

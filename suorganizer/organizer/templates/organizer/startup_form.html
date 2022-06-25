@@ -2,7 +2,7 @@
 {% block title %}
 {{block.super}} - Create Startup
 {% endblock  %}
-{% block content %}
+{% block org_content %}
     <div>
         <div>
             <form action="{% url 'organizer_startup_create' %}" method="post">
@@ -12,4 +12,4 @@
             </form>
         </div>
     </div>
-{% endblock content %}
+{% endblock org_content %}
